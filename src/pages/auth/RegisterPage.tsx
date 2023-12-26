@@ -75,7 +75,7 @@ const handleSubmit=(val:Values)=>{
             }}
             underline="hover"
           >
-            <SvgIcon sx={{ mr: .5 }}>
+            <SvgIcon sx={{ mr: 1 }}>
               <ArrowLeftIcon />
             </SvgIcon>
             <Typography variant="subtitle2">Dashboard</Typography>
@@ -92,8 +92,9 @@ const handleSubmit=(val:Values)=>{
           >
             Already have an account? &nbsp;
             <Link
-              href="#"
+              href="/login"
               underline="hover"
+              component={RouterLink}
               variant="subtitle2"
             >
               Log in

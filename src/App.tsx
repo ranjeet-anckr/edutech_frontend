@@ -3,6 +3,7 @@ import RegisterPage from "./pages/auth/RegisterPage"
 import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import theme from "./theme/theme";
 import  { Toaster } from 'react-hot-toast';
+import AppRoutes from "./routes/AppRoutes";
 
 
 
@@ -26,9 +27,8 @@ const App = () => {
     }}}
 />
         <CssBaseline />
-        <AuthLayout>
-        <RegisterPage/>
-        </AuthLayout>
+       
+        <AppRoutes/>
       
         </ThemeProvider>
       

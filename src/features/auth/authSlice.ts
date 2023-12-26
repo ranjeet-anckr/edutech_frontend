@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axiosInstance from "../../app/axiosInstance";
 import { ActionCreatorTitle, apiConstants, STRING } from "../../constants";
 import toast from "react-hot-toast";
+import { setDataToLocalStorage } from "../../utils/helper";
 
 interface authValue {
   first_name?: string;
@@ -48,15 +49,19 @@ const authSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loading = false;
           state.user = action.payload;
+          console.log(action.payload);
+          setDataToLocalStorage("token", action.payload.data.token);
           toast.success(action.payload.message);
           state.error = null;
         }
       )
       .addCase(authenticateUser.rejected, (state, action) => {
         state.loading = false;
+        console.log(action.error);
         state.user = null;
         if (action.error.message === STRING.REQUESTFAILED400) {
           state.error = STRING.ACCESSDENIED;
+          toast.error(STRING.ACCESSDENIED);
         } else {
           state.error = action.error.message || null;
         }
