@@ -1,34 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import AuthLayout from "./layout/auth/AuthLayout";
+import RegisterPage from "./pages/auth/RegisterPage"
+import { Box, CssBaseline, ThemeProvider } from '@mui/material';
+import theme from "./theme/theme";
+import  { Toaster } from 'react-hot-toast';
 
-function App() {
-  const [count, setCount] = useState(0)
 
+
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      	<ThemeProvider theme={theme}>
+        <Toaster
+  position="top-center"
+  reverseOrder={false}
+  gutter={8}
+  containerClassName=""
+  containerStyle={{}}
+  toastOptions={{
+    // Define default options
+    className: '',
+    duration: 5000,
+    style: {
+      background: '#363636',
+      color: '#fff',
+    }}}
+/>
+        <CssBaseline />
+        <AuthLayout>
+        <RegisterPage/>
+        </AuthLayout>
+      
+        </ThemeProvider>
+      
+    </div>
   )
 }
 
