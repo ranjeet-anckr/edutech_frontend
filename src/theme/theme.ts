@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
 import { createTypography } from "./create-typography";
 import { createComponents } from "./create-components";
 
@@ -11,7 +10,7 @@ const theme = createTheme({
       white: "white",
     },
     primary: {
-      main: "#6941c6",
+      main: "#0986BB",
     },
   },
   breakpoints: {

@@ -88,7 +88,12 @@ const StudentNav = () => {
               <span>Loading</span>
             ) : (
               <>
-                <Typography textAlign="center" component="span" sx={{ mr: 1 }}>
+                <Typography
+                  variant="h6"
+                  textAlign="center"
+                  component="span"
+                  sx={{ mr: 1 }}
+                >
                   {user?.user?.first_name} {user?.user?.last_name}
                 </Typography>
                 <Tooltip title="Open settings">
