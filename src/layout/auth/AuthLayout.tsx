@@ -1,45 +1,37 @@
-import type { FC, ReactNode } from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import { RouterLink } from '../../components/common/router-link';
+import type { FC } from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import { Outlet } from "react-router-dom";
 
-
-
-interface LayoutProps {
-  children: ReactNode;
-}
-
- const AuthLayout: FC<LayoutProps> = (props) => {
-  const { children } = props;
-
+const AuthLayout: FC = () => {
   return (
     <Box
       sx={{
-        backgroundColor: 'black',
-        minHeight:"100vh",
-        display: 'flex',
-        flex: '1 1 auto',
+        backgroundColor: "black",
+        minHeight: "100vh",
+        display: "flex",
+        flex: "1 1 auto",
         flexDirection: {
-          xs: 'column-reverse',
-          md: 'row',
+          xs: "column-reverse",
+          md: "row",
         },
       }}
     >
       <Box
         sx={{
-          alignItems: 'center',
-          backgroundColor: 'neutral.800',
+          alignItems: "center",
+          backgroundColor: "neutral.800",
           backgroundImage: 'url("src/assets/gradient-bg.svg")',
-          backgroundPosition: 'top center',
-          backgroundRepeat: 'no-repeat',
-          color: 'common.white',
-          display: 'flex',
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
+          color: "common.white",
+          display: "flex",
           flex: {
-            xs: '0 0 auto',
-            md: '1 1 auto',
+            xs: "0 0 auto",
+            md: "1 1 auto",
           },
-          justifyContent: 'center',
+          justifyContent: "center",
           p: {
             xs: 4,
             md: 8,
@@ -47,22 +39,15 @@ interface LayoutProps {
         }}
       >
         <Box maxWidth="md">
-          <Typography
-            sx={{ mb: 1 }}
-            variant="h4"
-          >
+          <Typography sx={{ mb: 1 }} variant="h4">
             Welcome to EduTech
           </Typography>
-          <Typography
-            sx={{ mb: 4 }}
-          >
-            A professional kit that comes with ready-to-use MUI components developed with one common
-            goal in mind, help you build faster & beautiful applications.
+          <Typography sx={{ mb: 4 }}>
+            A professional kit that comes with ready-to-use MUI components
+            developed with one common goal in mind, help you build faster &
+            beautiful applications.
           </Typography>
-          <Typography
-            variant="subtitle2"
-            sx={{ mb: 2 }}
-          >
+          <Typography variant="subtitle2" sx={{ mb: 2 }}>
             Join 6,000+ forward-thinking companies:
           </Typography>
           <Stack
@@ -71,10 +56,10 @@ interface LayoutProps {
             flexWrap="wrap"
             gap={4}
             sx={{
-              color: 'text.primary',
-              '& > *': {
-                color: 'neutral.400',
-                flex: '0 0 auto',
+              color: "text.primary",
+              "& > *": {
+                color: "neutral.400",
+                flex: "0 0 auto",
               },
             }}
           >
@@ -89,17 +74,17 @@ interface LayoutProps {
       </Box>
       <Box
         sx={{
-          backgroundColor: 'background.paper',
-          display: 'flex',
+          backgroundColor: "background.paper",
+          display: "flex",
           flex: {
-            xs: '1 1 auto',
-            md: '0 0 auto',
+            xs: "1 1 auto",
+            md: "0 0 auto",
           },
-          flexDirection: 'column',
+          flexDirection: "column",
           justifyContent: {
-            md: 'center',
+            md: "center",
           },
-          maxWidth: '100%',
+          maxWidth: "100%",
           p: {
             xs: 4,
             md: 4,
@@ -110,11 +95,11 @@ interface LayoutProps {
         }}
       >
         <div>
-          {children}
+          <Outlet />
         </div>
       </Box>
     </Box>
   );
 };
 
-export default AuthLayout
+export default AuthLayout;

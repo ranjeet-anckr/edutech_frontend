@@ -1,4 +1,3 @@
-import * as Yup from "yup";
 import { useFormik } from "formik";
 import ArrowLeftIcon from "@untitled-ui/icons-react/build/esm/ArrowLeft";
 import Box from "@mui/material/Box";
@@ -12,38 +11,48 @@ import { RouterLink } from "../../components/common/router-link";
 import { Seo } from "../../components/common/Seo";
 import { useDispatch } from "react-redux";
 import { authenticateUser } from "../../features/auth/authSlice";
-
-interface Values {
-  email: string;
-  password: string;
-}
-
-const initialValues: Values = {
-  email: "",
-  password: "",
-};
-
-const validationSchema = Yup.object({
-  email: Yup.string()
-    .email("Must be a valid email")
-    .max(255)
-    .required("Email is required"),
-  password: Yup.string().max(255).required("Password is required"),
-});
+import { LOGIN_VALIDATION_SCHEMA } from "../../constants";
+import { useNavigate } from "react-router-dom";
+import { LoginValueType } from "../../interface/interface";
+import { loginInitialValues } from "../../constants/initialState";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const formik = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: (val)=> {handleLogin(val)},
+    initialValues: loginInitialValues,
+    validationSchema: LOGIN_VALIDATION_SCHEMA,
+    onSubmit: (val) => {
+      handleLogin(val);
+    },
   });
 
-  const handleLogin=(val:Values)=>{
-    const newValue = { ...val, isSignup: false }; 
-    dispatch(authenticateUser(newValue) as any);
+  const handleLogin = async (val: LoginValueType) => {
+    const newValue = { ...val, isSignup: false };
+    try {
+      const res = await dispatch(authenticateUser(newValue) as any);
+      console.log("res", res.payload.data.role);
+      switch (res.payload.data.role) {
+        case "student":
+          navigate("/student-dashboard");
+          break;
 
-  }
+        case "teacher":
+          navigate("/teacher-dashboard");
+          break;
+
+        case "admin":
+          navigate("/admin-dashboard");
+          break;
+
+        default:
+          navigate("/");
+          break;
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
   return (
     <>
       <Seo title="Login" />

@@ -1,61 +1,6 @@
-export const initialStateUser = {
-	id: "",
-	firstName: "",
-	lastName: "",
-	maidenName: "",
-	age: 0,
-	gender: "",
-	email: "",
-	phone: "",
-	username: "",
-	password: "",
-	birthDate: "",
-	image: "",
-	bloodGroup: "",
-	height: 0,
-	weight: 0,
-	eyeColor: "",
-	hair: {
-		color: "",
-		type: "",
-	},
-	domain: "",
-	ip: "",
-	address: {
-		address: "",
-		city: "",
-		coordinates: {
-			lat: 0,
-			lng: 0,
-		},
-		postalCode: "",
-		state: "",
-	},
-	macAddress: "",
-	university: "",
-	bank: {
-		cardExpire: "",
-		cardNumber: "",
-		cardType: "",
-		currency: "",
-		iban: "",
-	},
-	company: {
-		address: {
-			address: "",
-			city: "",
-			coordinates: {
-				lat: 0,
-				lng: 0,
-			},
-			postalCode: "",
-			state: "",
-		},
-		department: "",
-		name: "",
-		title: "",
-	},
-	ein: "",
-	ssn: "",
-	userAgent: "",
+import { LoginValueType } from "../interface/interface";
+
+export const loginInitialValues: LoginValueType = {
+  email: "",
+  password: "",
 };

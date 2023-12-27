@@ -4,59 +4,39 @@ import { ActionCreatorTitle, apiConstants, STRING } from "../../constants";
 import toast from "react-hot-toast";
 import { setDataToLocalStorage } from "../../utils/helper";
 
-interface authValue {
-  first_name?: string;
-  last_name?: string;
-  email: string;
-  password: string;
-  contact_no?: string;
-  city?: string;
-  policy?: boolean;
-  isSignup?: boolean;
-}
 const initialState: any = {
   loading: false,
   error: null,
   user: null,
 };
 
-export const authenticateUser = createAsyncThunk(
-  ActionCreatorTitle.AUTH,
-  async (authData: authValue) => {
-    const postData = { ...authData };
-    delete postData.isSignup;
-
-    const { data } = await axiosInstance.post(
-      authData.isSignup ? apiConstants.REGISTER : apiConstants.LOGIN,
-      postData
-    );
+export const getUserProfile = createAsyncThunk(
+  ActionCreatorTitle.PROFILE,
+  async () => {
+    const { data } = await axiosInstance.get(apiConstants.PROFILE);
 
     return data;
   }
 );
 
-const authSlice = createSlice({
+const userSlice = createSlice({
   name: STRING.USER_AUTH,
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(authenticateUser.pending, (state) => {
+      .addCase(getUserProfile.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(
-        authenticateUser.fulfilled,
+        getUserProfile.fulfilled,
         (state, action: PayloadAction<any>) => {
           state.loading = false;
-          state.user = action.payload;
-          console.log(action.payload);
-          setDataToLocalStorage(STRING.ACCESS_TOKEN, action.payload.data.token);
-          setDataToLocalStorage(STRING.USER_ROLE, action.payload.data.role);
-          toast.success(action.payload.message);
+          state.user = action.payload.data;
           state.error = null;
         }
       )
-      .addCase(authenticateUser.rejected, (state, action) => {
+      .addCase(getUserProfile.rejected, (state, action) => {
         state.loading = false;
         console.log(action.error);
         state.user = null;
@@ -71,4 +51,4 @@ const authSlice = createSlice({
   reducers: {},
 });
 
-export default authSlice.reducer;
+export default userSlice.reducer;

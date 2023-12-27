@@ -3,16 +3,22 @@ export const STRING = {
   REQUESTFAILED400: "Request failed with status code 400",
   ACCESSDENIED: "Access Denied! Invalid Credentials",
   USER_AUTH: "user",
+  GET_COURSE: "courses",
+  ACCESS_TOKEN: "token",
+  USER_ROLE: "userRole",
 };
 
 export const apiConstants = {
-  USERS: "/users/",
+  COURSE: "/course",
   LOGIN: "/login",
   REGISTER: "/registration",
+  PROFILE: "/profile",
 };
 
 export const ActionCreatorTitle = {
   AUTH: "auth",
+  PROFILE: "/profile",
+  COURSE: "/course",
   AUTH_SIGNUP: "auth/registerUser",
 };
 
