@@ -31,7 +31,7 @@ const AddCourseForm = () => {
   };
   return (
     <div>
-      <Typography variant="h5">Add New Course</Typography>
+      <Typography variant="h5">Add New Courses</Typography>
       <form onSubmit={formik.handleSubmit}>
         <Stack spacing={3}>
           <TextField
