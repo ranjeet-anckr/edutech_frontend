@@ -4,6 +4,7 @@ export const STRING = {
   ACCESSDENIED: "Access Denied! Invalid Credentials",
   USER_AUTH: "user",
   GET_COURSE: "courses",
+  GET_COURSEDETAILS: "courses-Details",
   ACCESS_TOKEN: "token",
   USER_ROLE: "userRole",
 };
@@ -13,12 +14,15 @@ export const apiConstants = {
   LOGIN: "/login",
   REGISTER: "/registration",
   PROFILE: "/profile",
+  COURSE_DETAILS: "/course-details",
 };
 
 export const ActionCreatorTitle = {
+  ADD_COURSE: "addCourse",
   AUTH: "auth",
   PROFILE: "/profile",
   COURSE: "/course",
+  COURSEDETAILS: "/course-details",
   AUTH_SIGNUP: "auth/registerUser",
 };
 

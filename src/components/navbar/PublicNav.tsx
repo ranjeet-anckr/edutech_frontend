@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { RouterLink } from "../common/router-link";
 import { Link } from "react-router-dom";
+import { logo } from "../../assets/img/images";
 
 const PublicNav = () => {
   return (
@@ -30,12 +31,7 @@ const PublicNav = () => {
               sx={{ mr: 2 }}
             >
               <Link to="/">
-                <img
-                  src="src/assets/img/logo.svg"
-                  alt="logo"
-                  width="100px"
-                  height="40px"
-                />
+                <img src={logo} alt="logo" width="100px" height="40px" />
               </Link>
             </IconButton>
             <Button color="inherit" component={RouterLink} href="/course">

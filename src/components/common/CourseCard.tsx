@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { RouterLink } from "./router-link";
 
 const CourseCard = ({ course }: any) => {
   return (
@@ -18,25 +19,33 @@ const CourseCard = ({ course }: any) => {
     >
       <CardMedia
         sx={{ height: 140 }}
-        image={course.course_img}
+        image={course.courseImg}
         title="green iguana"
       />
       <CardContent sx={{ padding: 2 }}>
         <Typography gutterBottom variant="h6" component="div">
-          {course.course_name}
+          {course.courseName}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {course.course_categories}
+          {course.courseCategories}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Price: Rs {course.course_price}
+          {course.description}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Price: Rs {course.coursePrice}
         </Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         <Button size="small" variant="contained">
           Enroll Now
         </Button>
-        <Button size="small" variant="contained">
+        <Button
+          size="small"
+          variant="contained"
+          component={RouterLink}
+          href={`/course/${course.id}`}
+        >
           View More
         </Button>
       </CardActions>

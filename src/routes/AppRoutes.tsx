@@ -17,10 +17,13 @@ import Home from "../pages/PublicPage/Home";
 import Course from "../pages/PublicPage/Course";
 import PublicLayout from "../layout/PublicLayout/PublicLayout";
 import MyCourses from "../pages/student/MyCourses";
+import CourseDetailsPage from "../pages/PublicPage/CourseDetailsPage";
+import { Box } from "@mui/material";
+import AdminCourseLIst from "../pages/admin/AdminCourseLIst";
 
 const AppRoutes = () => {
   return (
-    <div>
+    <Box sx={{ background: "#f2f2f2", minHeight: "100vh" }}>
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route element={<StudentRoutes />}>
@@ -33,6 +36,7 @@ const AppRoutes = () => {
           </Route>
           <Route element={<AdminRoutes />}>
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/admin-course" element={<AdminCourseLIst />} />
           </Route>
         </Route>
 
@@ -43,6 +47,7 @@ const AppRoutes = () => {
           <Route path="/events" element={<FreeClass />} />
           <Route path="/course" element={<Course />} />
           <Route path="/" element={<Home />} />
+          <Route path="/course/:id" element={<CourseDetailsPage />} />
         </Route>
 
         <Route element={<AuthLayout />}>
@@ -50,7 +55,7 @@ const AppRoutes = () => {
           <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
-    </div>
+    </Box>
   );
 };
 

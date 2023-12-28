@@ -1,40 +1,8 @@
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Button,
-  IconButton,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import React, { useEffect } from "react";
+import { AppBar, Box, Button, IconButton, Toolbar } from "@mui/material";
 import { RouterLink } from "../common/router-link";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { getUserProfile } from "../../features/auth/userSlice";
+import AccountSection from "./AccountSection";
 
-const settings = ["Profile", "Logout"];
 const StudentNav = () => {
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
-
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getUserProfile());
-  }, []);
-
-  const user = useAppSelector((state) => state.user);
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
   return (
     <div>
       <AppBar position="sticky" sx={{ backdropFilter: "blur(10px)" }}>
@@ -83,52 +51,7 @@ const StudentNav = () => {
               Courses
             </Button>
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            {user.loading ? (
-              <span>Loading</span>
-            ) : (
-              <>
-                <Typography
-                  variant="h6"
-                  textAlign="center"
-                  component="span"
-                  sx={{ mr: 1 }}
-                >
-                  {user?.user?.first_name} {user?.user?.last_name}
-                </Typography>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt={user?.user?.first_name}
-                      src="/static/images/avatar/2.jpg"
-                    />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </>
-            )}
-          </Box>
+          <AccountSection />
         </Toolbar>
       </AppBar>
     </div>
